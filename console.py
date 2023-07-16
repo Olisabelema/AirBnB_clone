@@ -4,9 +4,7 @@ This module contains the entry point of the command interpreter
 i.e the console. The command interpreter helps to manipulate data
 without visual interface, like in a shell. It is perfect for
 development and debugging.
-
 """
-
 import cmd
 import re
 from models.base_model import BaseModel
