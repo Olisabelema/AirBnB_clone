@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This module contains the entry point of the command interpreter
 i.e the console. The command interpreter helps to manipulate data
