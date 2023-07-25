@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-
 """
 This module contains the entry point of the command interpreter
 i.e the console. The command interpreter helps to manipulate data
 without visual interface, like in a shell. It is perfect for
 development and debugging.
-
 """
-
 import cmd
 import re
 from models.base_model import BaseModel
@@ -69,7 +66,9 @@ class HBNBCommand(cmd.Cmd):
             print(new_obj.id)
 
     def do_show(self, line):
-        """Print string representation of an instance based on specified class and id"""
+        """Print string representation of an
+            instance based on specified class and id
+        """
 
         if not line:
             print("** class name missing **")
@@ -84,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             try:
                 key = "{}.{}".format(commands[0], commands[1])
-                if key in storage.all(): 
+                if key in storage.all():
                     print(storage.all()[key])
                 else:
                     print("** no instance found **")
@@ -93,7 +92,9 @@ class HBNBCommand(cmd.Cmd):
                 return
 
     def do_destroy(self, line):
-        """Delete an instance from storage based on the class specified and id"""
+        """Delete an instance from storage
+            based on the class specified and id
+        """
         if not line:
             print("** class name missing **")
             return
@@ -115,7 +116,9 @@ class HBNBCommand(cmd.Cmd):
                 return
 
     def do_all(self, line):
-        """Prints all string representation of all instances based or not on the class specified"""
+        """Prints all string representation of all
+            instances based or not on the class specified
+        """
         all_obj = []
         response = "** class doesn't exist **"
         if not line:
@@ -125,13 +128,15 @@ class HBNBCommand(cmd.Cmd):
                 print(response)
                 return
             else:
-                [
-                        all_obj.append(str(i)) for i in storage.all().values()
-                        if i.__class__.__name__ == line]
+                [all_obj.append(str(
+                    i)) for i in storage.all().values(
+                        ) if i.__class__.__name__ == line]
         print(all_obj)
 
     def do_count(self, line):
-        """count number of instances present in a specified class"""
+        """count number of instances present
+            in a specified class
+        """
         if line not in self.valid_classes:
             print("** class doesn't exist **")
             return
@@ -142,8 +147,10 @@ class HBNBCommand(cmd.Cmd):
             print(num)
 
     def do_update(self, line):
-        """Update an instance based on the class specified and id by adding or
-        updating attribute and saving in a file"""
+        """Update an instance based on the class
+            specified and id by adding or
+            updating attribute and saving in a file
+        """
         if not line:
             print("** class name missing **")
             return
@@ -166,7 +173,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(commands) == 1:
             print("** instance id missing **")
         elif len(commands) == 2:
-            key = "{}.{}".format(commands[0], commands[1].strip('"').strip("'"))
+            key = "{}.{}".format(
+                    commands[0], commands[1].strip('"').strip("'"))
             if key not in storage.all():
                 print("** no instance found **")
                 return
@@ -177,7 +185,8 @@ class HBNBCommand(cmd.Cmd):
             if commands[2].startswith('{'):
                 if commands[2].endswith('}'):
                     my_dict = eval(commands[2])
-                    key = "{}.{}".format(commands[0], commands[1].strip('"').strip("'"))
+                    key = "{}.{}".format(
+                            commands[0], commands[1].strip('"').strip("'"))
                     update_obj = storage.all()[key]
                     for k, v in my_dict.items():
                         setattr(update_obj, k, v)
@@ -194,7 +203,8 @@ class HBNBCommand(cmd.Cmd):
                 val = str(val).strip('"').strip("'")
             else:
                 val = eval(val)
-            key = "{}.{}".format(commands[0], commands[1].strip('"').strip("'"))
+            key = "{}.{}".format(
+                    commands[0], commands[1].strip('"').strip("'"))
             if key in storage.all():
                 update_obj = storage.all()[key]
                 cmd_key = commands[2].strip("'").strip('"')
@@ -240,16 +250,18 @@ class HBNBCommand(cmd.Cmd):
                 dic = re.findall(pattern, line)
                 obj_id = commands[1].split(',')[0][1:-1]
                 if not dic:
-                    new_line = "{} {}".format(cls, " ".join(commands[1][:-1].split(',')))
+                    new_line = "{} {}".format(cls, " ".join(
+                        commands[1][:-1].split(',')))
                 else:
-                    new_line = "{} {} {}".format(cls, obj_id.strip('"').strip("'"), dic[0])
+                    new_line = "{} {} {}".format(
+                            cls, obj_id.strip('"').strip("'"), dic[0])
                 self.do_update(new_line)
             else:
                 print("** invalid syntax **")
                 return
         except Exception:
-                print("** invalid syntax **")
-                return
+            print("** invalid syntax **")
+            return
 
 
 if __name__ == '__main__':

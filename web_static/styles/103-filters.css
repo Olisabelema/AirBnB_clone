@@ -1,5 +1,5 @@
 div.container {
-	max-width: 1000px;
+	width: 1000px;
 	margin: 30px auto;
 	text-align: center;
 }
@@ -12,7 +12,7 @@ section.filters {
 }
 section.filters button {
 	font-size: 18px;
-	background-color: #FF5A5F;
+	background-color: #940005;
 	color: #FFFFFF;
 	height: 48px;
 	width: 20%;
@@ -69,7 +69,12 @@ section.filters button:hover {
 }
 .locations:hover .popover, .amenities:hover .popover {
 	display: block;
-<<<<<<< HEAD
-=======
 }
->>>>>>> 853fcf63c3e54a29ef8235a2381adb88fb9e32ae
+@media only screen and (max-width: 768px) {
+	div.container {
+		width: 90%;
+	}
+	div.filters {
+		width: 100%;
+	}
+}
